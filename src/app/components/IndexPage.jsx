@@ -6,8 +6,8 @@ export default class IndexPage extends React.Component {
     return (
       <div className="home">
         <header>What are we doing?</header>
-        <button><Link to='/sendmoney'>Send Money</Link></button>
-        <button><Link to='/history'>View Transaction History</Link></button>
+        <Link to='/sendmoney'><button>Send Money</button></Link>
+        <Link to='/history'><button>View Transaction History</button></Link>
         <footer></footer>
       </div>
     );

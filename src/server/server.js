@@ -42,7 +42,6 @@ app.get('*', (req, res) => {
   match(
     { routes: getRoutes(store), location: req.url },
     (err, redirectLocation, renderProps) => {
-      console.log(renderProps);
       // in case of error display the error message
       if (err) {
         return res.status(500).send(err.message);
@@ -52,7 +51,6 @@ app.get('*', (req, res) => {
       if (redirectLocation) {
         return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       }
-
       // generate the React markup for the current route
       let markup;
       let preloadedState;
