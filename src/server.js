@@ -6,6 +6,20 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
+import fs from "fs";
+
+const TRANSACTIONS_PER_PAGE = 20;
+
+const transactions = {};
+fs.readFile( __dirname + "/" + "transactions.json", 'utf8', function (err, data) {
+  let transactionData = JSON.parse(data);
+  transactionData = Object.keys(transactionData).map( (k) => transactionData[k] );
+  let currentPage = 0;
+  for (let i = 0; i < transactionData.length; i += TRANSACTIONS_PER_PAGE) {
+    transactions[currentPage] = transactionData.slice(i, i+TRANSACTIONS_PER_PAGE);
+    currentPage++;
+  }
+});
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -15,6 +29,12 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+
+
+app.get('/transactions', function (req, res) {
+   res.json(transactions[req.query.page]);
+});
+
 
 // universal routing and rendering
 app.get('*', (req, res) => {
