@@ -5908,25 +5908,13 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     });
-    var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), _Layout = __webpack_require__(157), _Layout2 = _interopRequireDefault(_Layout), _IndexPage = __webpack_require__(156), _IndexPage2 = _interopRequireDefault(_IndexPage), _NotFoundPage = __webpack_require__(158), _NotFoundPage2 = _interopRequireDefault(_NotFoundPage), _SendMoney = __webpack_require__(160), _SendMoney2 = _interopRequireDefault(_SendMoney), _TransactionHistoryContainer = __webpack_require__(162), _TransactionHistoryContainer2 = _interopRequireDefault(_TransactionHistoryContainer), routes = function(store) {
-        var requestTransactions = function() {};
-        return _react2["default"].createElement(_reactRouter.Route, {
-            path: "/",
-            component: _Layout2["default"]
-        }, _react2["default"].createElement(_reactRouter.IndexRoute, {
-            component: _IndexPage2["default"]
-        }), _react2["default"].createElement(_reactRouter.Route, {
-            path: "/sendmoney",
-            component: _SendMoney2["default"]
-        }), _react2["default"].createElement(_reactRouter.Route, {
-            path: "/history",
-            component: _TransactionHistoryContainer2["default"],
-            onEnter: requestTransactions
-        }), _react2["default"].createElement(_reactRouter.Route, {
-            path: "*",
-            component: _NotFoundPage2["default"]
-        }));
-    };
+    var _react = __webpack_require__(4), _Layout = (_interopRequireDefault(_react), 
+    __webpack_require__(25), __webpack_require__(157)), _IndexPage = (_interopRequireDefault(_Layout), 
+    __webpack_require__(156)), _NotFoundPage = (_interopRequireDefault(_IndexPage), 
+    __webpack_require__(158)), _SendMoney = (_interopRequireDefault(_NotFoundPage), 
+    __webpack_require__(160)), _TransactionHistoryContainer = (_interopRequireDefault(_SendMoney), 
+    __webpack_require__(162));
+    _interopRequireDefault(_TransactionHistoryContainer);
     exports["default"] = routes;
 }, function(module, exports, __webpack_require__) {
     "use strict";

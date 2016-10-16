@@ -8,7 +8,7 @@ import TransactionHistoryContainer from './components/TransactionHistoryContaine
 
 
 
-const routes = function(store) {
+const getRoutes = function(store) {
   const requestTransactions = function requestTransactions() {
 
   };
@@ -22,4 +22,4 @@ const routes = function(store) {
   );
 };
 
-export default routes;
+export default getRoutes;
