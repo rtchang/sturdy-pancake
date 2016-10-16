@@ -8,7 +8,7 @@ import routes from '../app/routes';
 import NotFoundPage from '../app/components/NotFoundPage';
 import fs from "fs";
 
-const TRANSACTIONS_PER_PAGE = 20;
+const TRANSACTIONS_PER_PAGE = 10;
 
 const transactions = {};
 fs.readFile( __dirname + "/" + "transactions.json", 'utf8', function (err, data) {
