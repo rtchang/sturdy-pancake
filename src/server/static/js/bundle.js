@@ -37,9 +37,9 @@
             "default": obj
         };
     }
-    var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactDom = __webpack_require__(254), _reactDom2 = _interopRequireDefault(_reactDom), _Root = __webpack_require__(159), _Root2 = _interopRequireDefault(_Root), _store = __webpack_require__(167), _store2 = _interopRequireDefault(_store), store = (0, 
-    _store2["default"])();
-    document.addEventListener("DOMContentLoaded", function() {
+    var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactDom = __webpack_require__(254), _reactDom2 = _interopRequireDefault(_reactDom), _Root = __webpack_require__(159), _Root2 = _interopRequireDefault(_Root), _store = __webpack_require__(167), _store2 = _interopRequireDefault(_store), preloadedState = JSON.parse(unescape(window.__PRELOADED_STATE__)), store = (0, 
+    _store2["default"])(preloadedState);
+    window.store = store, document.addEventListener("DOMContentLoaded", function() {
         _reactDom2["default"].render(_react2["default"].createElement(_Root2["default"], {
             store: store
         }), document.getElementById("main"));
@@ -5528,7 +5528,8 @@
             return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
             Constructor;
         };
-    }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), _routes = __webpack_require__(166), _routes2 = _interopRequireDefault(_routes), AppRoutes = function(_React$Component) {
+    }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), _routes = __webpack_require__(166), _routes2 = _interopRequireDefault(_routes), routes = (0, 
+    _routes2["default"])(), AppRoutes = function(_React$Component) {
         function AppRoutes() {
             return _classCallCheck(this, AppRoutes), _possibleConstructorReturn(this, (AppRoutes.__proto__ || Object.getPrototypeOf(AppRoutes)).apply(this, arguments));
         }
@@ -5537,7 +5538,7 @@
             value: function() {
                 return _react2["default"].createElement(_reactRouter.Router, {
                     history: _reactRouter.browserHistory,
-                    routes: _routes2["default"],
+                    routes: routes,
                     onUpdate: function() {
                         return window.scrollTo(0, 0);
                     }
@@ -5545,7 +5546,9 @@
             }
         } ]), AppRoutes;
     }(_react2["default"].Component);
-    exports["default"] = AppRoutes;
+    AppRoutes.contextTypes = {
+        store: _react2["default"].PropTypes.object.isRequired
+    }, exports["default"] = AppRoutes;
 }, function(module, exports, __webpack_require__) {
     "use strict";
     function _interopRequireDefault(obj) {
@@ -5905,21 +5908,25 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     });
-    var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), _Layout = __webpack_require__(157), _Layout2 = _interopRequireDefault(_Layout), _IndexPage = __webpack_require__(156), _IndexPage2 = _interopRequireDefault(_IndexPage), _NotFoundPage = __webpack_require__(158), _NotFoundPage2 = _interopRequireDefault(_NotFoundPage), _SendMoney = __webpack_require__(160), _SendMoney2 = _interopRequireDefault(_SendMoney), _TransactionHistoryContainer = __webpack_require__(162), _TransactionHistoryContainer2 = _interopRequireDefault(_TransactionHistoryContainer), routes = _react2["default"].createElement(_reactRouter.Route, {
-        path: "/",
-        component: _Layout2["default"]
-    }, _react2["default"].createElement(_reactRouter.IndexRoute, {
-        component: _IndexPage2["default"]
-    }), _react2["default"].createElement(_reactRouter.Route, {
-        path: "/sendmoney",
-        component: _SendMoney2["default"]
-    }), _react2["default"].createElement(_reactRouter.Route, {
-        path: "/history",
-        component: _TransactionHistoryContainer2["default"]
-    }), _react2["default"].createElement(_reactRouter.Route, {
-        path: "*",
-        component: _NotFoundPage2["default"]
-    }));
+    var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), _Layout = __webpack_require__(157), _Layout2 = _interopRequireDefault(_Layout), _IndexPage = __webpack_require__(156), _IndexPage2 = _interopRequireDefault(_IndexPage), _NotFoundPage = __webpack_require__(158), _NotFoundPage2 = _interopRequireDefault(_NotFoundPage), _SendMoney = __webpack_require__(160), _SendMoney2 = _interopRequireDefault(_SendMoney), _TransactionHistoryContainer = __webpack_require__(162), _TransactionHistoryContainer2 = _interopRequireDefault(_TransactionHistoryContainer), routes = function(store) {
+        var requestTransactions = function() {};
+        return _react2["default"].createElement(_reactRouter.Route, {
+            path: "/",
+            component: _Layout2["default"]
+        }, _react2["default"].createElement(_reactRouter.IndexRoute, {
+            component: _IndexPage2["default"]
+        }), _react2["default"].createElement(_reactRouter.Route, {
+            path: "/sendmoney",
+            component: _SendMoney2["default"]
+        }), _react2["default"].createElement(_reactRouter.Route, {
+            path: "/history",
+            component: _TransactionHistoryContainer2["default"],
+            onEnter: requestTransactions
+        }), _react2["default"].createElement(_reactRouter.Route, {
+            path: "*",
+            component: _NotFoundPage2["default"]
+        }));
+    };
     exports["default"] = routes;
 }, function(module, exports, __webpack_require__) {
     "use strict";

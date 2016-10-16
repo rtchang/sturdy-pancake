@@ -2,11 +2,13 @@ import path from 'path';
 import { Server } from 'http';
 import Express from 'express';
 import React from 'react';
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import routes from '../app/routes';
+import getRoutes from '../app/routes';
 import NotFoundPage from '../app/components/NotFoundPage';
 import fs from "fs";
+import configureStore from '../app/store/store';
 
 const TRANSACTIONS_PER_PAGE = 10;
 
@@ -30,18 +32,17 @@ app.set('views', path.join(__dirname, 'views'));
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
 
-
-app.get('/transactions', function (req, res) {
+app.get('/api/transactions', function (req, res) {
    res.json(transactions[req.query.page]);
 });
 
-
 // universal routing and rendering
+const store = configureStore();
 app.get('*', (req, res) => {
   match(
-    { routes, location: req.url },
+    { routes: getRoutes(store), location: req.url },
     (err, redirectLocation, renderProps) => {
-
+      console.log(renderProps);
       // in case of error display the error message
       if (err) {
         return res.status(500).send(err.message);
@@ -54,9 +55,16 @@ app.get('*', (req, res) => {
 
       // generate the React markup for the current route
       let markup;
+      let preloadedState;
       if (renderProps) {
+        preloadedState = escape(JSON.stringify(store.getState()));
+        const element = (
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        );
         // if the current route matched we have renderProps
-        markup = renderToString(<RouterContext {...renderProps}/>);
+        markup = renderToString(element);
       } else {
         // otherwise we can render a 404 page
         markup = renderToString(<NotFoundPage/>);
@@ -64,7 +72,7 @@ app.get('*', (req, res) => {
       }
 
       // render the index template with the embedded React markup
-      return res.render('index', { markup });
+      return res.render('index', { markup, preloadedState });
     }
   );
 });

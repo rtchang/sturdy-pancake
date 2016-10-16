@@ -8,6 +8,9 @@
   </head>
   <body>
     <div id="main"><%- markup -%></div>
+    <script type="text/javascript">
+      window.__PRELOADED_STATE__ = '<%= preloadedState %>';
+    </script>
     <script src="/js/bundle.js"></script>
   </body>
 </html>
