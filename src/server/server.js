@@ -4,8 +4,8 @@ import Express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import routes from './routes';
-import NotFoundPage from './components/NotFoundPage';
+import routes from '../app/routes';
+import NotFoundPage from '../app/components/NotFoundPage';
 import fs from "fs";
 
 const TRANSACTIONS_PER_PAGE = 20;

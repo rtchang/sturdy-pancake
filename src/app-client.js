@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRoutes from './components/AppRoutes';
+import AppRoutes from './app/components/AppRoutes';
+import { Provider } from 'react-redux';
+import configureStore from './app/store/store';
 
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(<AppRoutes />, document.getElementById('main'));
+let store = configureStore();
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <AppRoutes />,
+    </Provider>,
+    document.getElementById('main')
+  );
 });
