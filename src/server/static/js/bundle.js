@@ -5820,10 +5820,12 @@
                 validEmail: null,
                 amount: "0.00",
                 currency: "USD",
+                message: "",
                 paymentFor: null
             }, _this.handleAmountChange = _this.handleAmountChange.bind(_this), _this.handleCurrencyChange = _this.handleCurrencyChange.bind(_this), 
             _this.handleEmailChange = _this.handleEmailChange.bind(_this), _this.amountBlur = _this.amountBlur.bind(_this), 
-            _this.amountFocus = _this.amountFocus.bind(_this), _this;
+            _this.amountFocus = _this.amountFocus.bind(_this), _this.clearForm = _this.clearForm.bind(_this), 
+            _this;
         }
         return _inherits(SendMoney, _React$Component), _createClass(SendMoney, [ {
             key: "handleEmailChange",
@@ -5866,6 +5868,25 @@
                 });
             }
         }, {
+            key: "handleMessageChange",
+            value: function(e) {
+                this.setState({
+                    message: e.target.value
+                });
+            }
+        }, {
+            key: "clearForm",
+            value: function() {
+                this.setState({
+                    email: "",
+                    validEmail: null,
+                    amount: "0.00",
+                    currency: "USD",
+                    message: "",
+                    paymentFor: null
+                });
+            }
+        }, {
             key: "render",
             value: function() {
                 var _this2 = this, currencyOptions = CURRENCY_TYPES.map(function(currency) {
@@ -5886,7 +5907,10 @@
                 }), _react2["default"].createElement("select", {
                     value: this.state.currency,
                     onChange: this.handleCurrencyChange
-                }, currencyOptions)), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("textarea", null)), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", null, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
+                }, currencyOptions)), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("textarea", {
+                    value: this.state.message,
+                    onChange: this.handleMessageChange
+                })), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", null, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
                     onClick: function() {
                         return _this2.setState({
                             paymentFor: FAMILY_FRIENDS
@@ -5904,7 +5928,9 @@
                     className: goodsServices ? "selected" : ""
                 }, "I'm paying for goods or services"), _react2["default"].createElement("p", {
                     className: "checkmark"
-                }, goodsServices ? "✓" : ""))), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", null, "Clear"), _react2["default"].createElement("button", null, "Next")));
+                }, goodsServices ? "✓" : ""))), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
+                    onClick: this.clearForm
+                }, "Clear"), _react2["default"].createElement("button", null, "Next")));
             }
         } ]), SendMoney;
     }(_react2["default"].Component);

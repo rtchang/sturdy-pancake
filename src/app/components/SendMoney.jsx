@@ -36,6 +36,7 @@ export default class SendMoney extends React.Component {
       validEmail: null,
       amount: "0.00",
       currency: "USD",
+      message: "",
       paymentFor: null
     };
     this.handleAmountChange = this.handleAmountChange.bind(this);
@@ -43,6 +44,7 @@ export default class SendMoney extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.amountBlur = this.amountBlur.bind(this);
     this.amountFocus = this.amountFocus.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   handleEmailChange(e) {
@@ -71,6 +73,21 @@ export default class SendMoney extends React.Component {
       amount = amount.slice(0,-3);
     }
     this.setState({amount});
+  }
+
+  handleMessageChange(e) {
+    this.setState({message: e.target.value});
+  }
+
+  clearForm() {
+    this.setState({
+      email: "",
+      validEmail: null,
+      amount: "0.00",
+      currency: "USD",
+      message: "",
+      paymentFor: null
+    });
   }
 
   render() {
@@ -105,7 +122,12 @@ export default class SendMoney extends React.Component {
           </select>
         </div>
 
-        <div><p>Message (optional):</p><textarea></textarea></div>
+        <div>
+          <p>Message (optional):</p>
+          <textarea value={this.state.message} onChange={this.handleMessageChange}>
+          </textarea>
+        </div>
+
         <p>What's this payment for?</p>
         <div>
           <div>
@@ -127,7 +149,7 @@ export default class SendMoney extends React.Component {
             <p className="checkmark">{goodsServices ? "✓" : ""}</p>
           </div>
         </div>
-        <footer><button>Clear</button><button>Next</button></footer>
+        <footer><button onClick={this.clearForm}>Clear</button><button>Next</button></footer>
       </div>
     );
   }
