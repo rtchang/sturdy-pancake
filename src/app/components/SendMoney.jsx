@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+// import
 
 const CURRENCY_TYPES = ["USD", "AUD", "GBP", "EUR", "JPY", "CHF"];
 const CURRENCY_SYMBOLS = {
@@ -37,14 +38,17 @@ export default class SendMoney extends React.Component {
       amount: "0.00",
       currency: "USD",
       message: "",
-      paymentFor: null
+      paymentFor: null,
+      sent: false
     };
     this.handleAmountChange = this.handleAmountChange.bind(this);
     this.handleCurrencyChange = this.handleCurrencyChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.amountBlur = this.amountBlur.bind(this);
     this.amountFocus = this.amountFocus.bind(this);
+    this.handleMessageChange = this.handleMessageChange.bind(this);
     this.clearForm = this.clearForm.bind(this);
+    this.sentMoney = this.sentMoney.bind(this);
   }
 
   handleEmailChange(e) {
@@ -90,7 +94,16 @@ export default class SendMoney extends React.Component {
     });
   }
 
+  sentMoney() {
+    document.body.classList.add("loading");
+    setTimeout( () => this.setState({sent: true}), 500);
+  }
+
   render() {
+    if (this.state.sent) {
+      document.body.classList.remove("loading");
+      return <div>hi</div>;
+    }
     const currencyOptions = CURRENCY_TYPES.map( currency => {
       return <option key={currency} value = {currency}>{currency}</option>;
     });
@@ -149,7 +162,10 @@ export default class SendMoney extends React.Component {
             <p className="checkmark">{goodsServices ? "✓" : ""}</p>
           </div>
         </div>
-        <footer><button onClick={this.clearForm}>Clear</button><button>Next</button></footer>
+        <footer>
+          <button onClick={this.clearForm}>Clear</button>
+          <button onClick={this.sentMoney}>Next</button>
+        </footer>
       </div>
     );
   }
