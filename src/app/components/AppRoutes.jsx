@@ -2,7 +2,6 @@ import React from 'react';
 import { Router, browserHistory } from 'react-router';
 import getRoutes from '../routes';
 
-
 class AppRoutes extends React.Component {
   render() {
     const routes = getRoutes(this.context.store);

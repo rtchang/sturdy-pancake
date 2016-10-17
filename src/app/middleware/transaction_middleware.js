@@ -1,11 +1,5 @@
 import {receiveTransactions,TransactionConstants} from '../actions/transaction_actions';
 
-let XMLHttpRequest;
-if (!process.env.BROWSER) {
-  XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-}
-XMLHttpRequest = XMLHttpRequest || window.XMLHttpRequest;
-
 export default ({getState, dispatch}) => next => action => {
   const success = transactions => dispatch(receiveTransactions(transactions));
   switch(action.type) {
@@ -14,8 +8,7 @@ export default ({getState, dispatch}) => next => action => {
       request.onreadystatechange = () => {
         if (request.readyState === XMLHttpRequest.DONE) {
           if (request.status === 200) {
-            console.log(request.responseText);
-            // success(request.responseText);
+            success(JSON.parse(request.responseText));
           } else {
             console.error("error requesting transactions");
           }

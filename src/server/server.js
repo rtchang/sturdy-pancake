@@ -10,12 +10,15 @@ import NotFoundPage from '../app/components/NotFoundPage';
 import fs from "fs";
 import configureStore from '../app/store/store';
 
-const TRANSACTIONS_PER_PAGE = 10;
+const TRANSACTIONS_PER_PAGE = 20;
 
 const transactions = {};
 fs.readFile( __dirname + "/" + "transactions.json", 'utf8', function (err, data) {
   let transactionData = JSON.parse(data);
-  transactionData = Object.keys(transactionData).map( (k) => transactionData[k] );
+  transactionData = Object.keys(transactionData).map( k => {
+    transactionData[k].id = k;
+    return transactionData[k];
+  });
   let currentPage = 0;
   for (let i = 0; i < transactionData.length; i += TRANSACTIONS_PER_PAGE) {
     transactions[currentPage] = transactionData.slice(i, i+TRANSACTIONS_PER_PAGE);
@@ -33,7 +36,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(Express.static(path.join(__dirname, 'static')));
 
 app.get('/api/transactions', function (req, res) {
-   res.json(transactions[req.query.page]);
+  const transactionsPage = transactions[req.query.page];
+  if (transactionsPage) {
+   res.json(transactionsPage);
+  }
 });
 
 // universal routing and rendering
