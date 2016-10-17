@@ -5808,19 +5808,34 @@
             maximumFractionDigits: 2
         });
         return formatter.format(amount);
+    }, validateEmail = function(email) {
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }, SendMoney = function(_React$Component) {
         function SendMoney() {
             _classCallCheck(this, SendMoney);
             var _this = _possibleConstructorReturn(this, (SendMoney.__proto__ || Object.getPrototypeOf(SendMoney)).call(this));
             return _this.state = {
+                email: "",
+                validEmail: null,
                 amount: "0.00",
                 currency: "USD",
                 paymentFor: null
             }, _this.handleAmountChange = _this.handleAmountChange.bind(_this), _this.handleCurrencyChange = _this.handleCurrencyChange.bind(_this), 
-            _this.amountBlur = _this.amountBlur.bind(_this), _this.amountFocus = _this.amountFocus.bind(_this), 
-            _this;
+            _this.handleEmailChange = _this.handleEmailChange.bind(_this), _this.amountBlur = _this.amountBlur.bind(_this), 
+            _this.amountFocus = _this.amountFocus.bind(_this), _this;
         }
         return _inherits(SendMoney, _React$Component), _createClass(SendMoney, [ {
+            key: "handleEmailChange",
+            value: function(e) {
+                var email = e.target.value;
+                this.setState({
+                    validEmail: validateEmail(email)
+                }), this.setState({
+                    email: email
+                });
+            }
+        }, {
             key: "handleAmountChange",
             value: function(e) {
                 this.setState({
@@ -5837,7 +5852,6 @@
         }, {
             key: "amountBlur",
             value: function() {
-                console.log("blur");
                 var amount = this.state.amount.replace(/\.(?![^.]+$)|[^0-9.]/g, ""), formatted = formatMoney(amount, this.state.currency);
                 this.setState({
                     amount: formatted
@@ -5860,9 +5874,11 @@
                         value: currency
                     }, currency);
                 }), familyFriends = this.state.paymentFor === FAMILY_FRIENDS, goodsServices = this.state.paymentFor === GOODS_SERVICES;
-                return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, "Send Money"), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "To:"), _react2["default"].createElement("input", null)), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Amount: ", CURRENCY_SYMBOLS[this.state.currency]), _react2["default"].createElement("input", {
+                return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, "Send Money"), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "To:"), _react2["default"].createElement("input", {
+                    onChange: this.handleEmailChange,
+                    value: this.state.email
+                }), _react2["default"].createElement("p", null, this.state.validEmail ? "valid" : "invalid")), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Amount: ", CURRENCY_SYMBOLS[this.state.currency]), _react2["default"].createElement("input", {
                     type: "text",
-                    pattern: "\\d*",
                     onChange: this.handleAmountChange,
                     onBlur: this.amountBlur,
                     onFocus: this.amountFocus,
@@ -5870,7 +5886,7 @@
                 }), _react2["default"].createElement("select", {
                     value: this.state.currency,
                     onChange: this.handleCurrencyChange
-                }, currencyOptions)), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("input", null)), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", null, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
+                }, currencyOptions)), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("textarea", null)), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", null, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
                     onClick: function() {
                         return _this2.setState({
                             paymentFor: FAMILY_FRIENDS

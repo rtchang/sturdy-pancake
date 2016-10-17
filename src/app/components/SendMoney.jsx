@@ -10,6 +10,7 @@ const CURRENCY_SYMBOLS = {
   CHF: "CHF",
   USD: "$"
 };
+
 const FAMILY_FRIENDS = 0;
 const GOODS_SERVICES = 1;
 
@@ -22,14 +23,32 @@ const formatMoney = function(amount, currency) {
   return formatter.format(amount);
 };
 
+const validateEmail = function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+};
+
 export default class SendMoney extends React.Component {
   constructor() {
     super();
-    this.state = {amount: "0.00", currency: "USD", paymentFor: null};
+    this.state = {
+      email: "",
+      validEmail: null,
+      amount: "0.00",
+      currency: "USD",
+      paymentFor: null
+    };
     this.handleAmountChange = this.handleAmountChange.bind(this);
     this.handleCurrencyChange = this.handleCurrencyChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
     this.amountBlur = this.amountBlur.bind(this);
     this.amountFocus = this.amountFocus.bind(this);
+  }
+
+  handleEmailChange(e) {
+    const email = e.target.value;
+    this.setState({validEmail: validateEmail(email)});
+    this.setState({email});
   }
 
   handleAmountChange(e) {
@@ -41,7 +60,6 @@ export default class SendMoney extends React.Component {
   }
 
   amountBlur() {
-    console.log("blur");
     const amount = this.state.amount.replace(/\.(?![^.]+$)|[^0-9.]/g, '');
     const formatted = formatMoney(amount,this.state.currency);
     this.setState({amount: formatted});
@@ -66,7 +84,11 @@ export default class SendMoney extends React.Component {
       <div>
         <header>Send Money</header>
 
-        <div><p>To:</p><input></input></div>
+        <div>
+          <p>To:</p>
+          <input onChange={this.handleEmailChange} value={this.state.email}/>
+          <p>{this.state.validEmail ? "valid" : "invalid"}</p>
+        </div>
 
         <div>
           <p>Amount: {CURRENCY_SYMBOLS[this.state.currency]}</p>
@@ -83,7 +105,7 @@ export default class SendMoney extends React.Component {
           </select>
         </div>
 
-        <div><p>Message (optional):</p><input></input></div>
+        <div><p>Message (optional):</p><textarea></textarea></div>
         <p>What's this payment for?</p>
         <div>
           <div>
