@@ -15849,8 +15849,7 @@
             return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
             Constructor;
         };
-    }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), CURRENCY_TYPES = (__webpack_require__(28), 
-    [ "USD", "AUD", "GBP", "EUR", "JPY", "CHF" ]), CURRENCY_SYMBOLS = {
+    }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _MoneySent = __webpack_require__(361), _MoneySent2 = _interopRequireDefault(_MoneySent), CURRENCY_TYPES = [ "USD", "AUD", "GBP", "EUR", "JPY", "CHF" ], CURRENCY_SYMBOLS = {
         AUD: "$",
         GBP: "£",
         EUR: "€",
@@ -15941,24 +15940,31 @@
                     amount: "0.00",
                     currency: "USD",
                     message: "",
-                    paymentFor: null
+                    paymentFor: null,
+                    sent: !1
                 });
             }
         }, {
             key: "sentMoney",
             value: function() {
-                var _this2 = this;
-                document.body.classList.add("loading"), setTimeout(function() {
+                var _this2 = this, error = "";
+                return this.state.validEmail || (error += "Email must be valid!\n"), "0.00" === this.state.amount && (error += "You can't send nothing!\n"), 
+                error ? void alert(error) : (document.body.classList.add("loading"), void setTimeout(function() {
                     return _this2.setState({
                         sent: !0
                     });
-                }, 500);
+                }, 500));
             }
         }, {
             key: "render",
             value: function() {
                 var _this3 = this;
-                if (this.state.sent) return document.body.classList.remove("loading"), _react2["default"].createElement("div", null, "hi");
+                if (this.state.sent) return document.body.classList.remove("loading"), _react2["default"].createElement(_MoneySent2["default"], {
+                    amount: CURRENCY_SYMBOLS[this.state.currency] + this.state.amount,
+                    email: this.state.email,
+                    currency: this.state.currency,
+                    clearForm: this.clearForm
+                });
                 var currencyOptions = CURRENCY_TYPES.map(function(currency) {
                     return _react2["default"].createElement("option", {
                         key: currency,
@@ -16007,4 +16013,23 @@
         } ]), SendMoney;
     }(_react2["default"].Component);
     exports["default"] = SendMoney;
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            "default": obj
+        };
+    }
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    });
+    var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(28), MoneySent = function(_ref) {
+        var amount = _ref.amount, email = _ref.email, currency = _ref.currency, clearForm = _ref.clearForm;
+        return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, "Send Money"), _react2["default"].createElement("p", null, "You have sent ", amount, " ", currency, " to ", email), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
+            onClick: clearForm
+        }, "Send Money"), _react2["default"].createElement(_reactRouter.Link, {
+            to: "/history"
+        }, _react2["default"].createElement("button", null, "View Transaction History"))));
+    };
+    exports["default"] = MoneySent;
 } ]));

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
-// import
+import MoneySent from "./MoneySent";
 
 const CURRENCY_TYPES = ["USD", "AUD", "GBP", "EUR", "JPY", "CHF"];
 const CURRENCY_SYMBOLS = {
@@ -90,11 +89,23 @@ export default class SendMoney extends React.Component {
       amount: "0.00",
       currency: "USD",
       message: "",
-      paymentFor: null
+      paymentFor: null,
+      sent: false
     });
   }
 
   sentMoney() {
+    let error = "";
+    if (!this.state.validEmail) {
+      error += "Email must be valid!\n";
+    }
+    if (this.state.amount === "0.00") {
+      error += "You can't send nothing!\n";
+    }
+    if (error) {
+      alert(error);
+      return;
+    }
     document.body.classList.add("loading");
     setTimeout( () => this.setState({sent: true}), 500);
   }
@@ -102,7 +113,12 @@ export default class SendMoney extends React.Component {
   render() {
     if (this.state.sent) {
       document.body.classList.remove("loading");
-      return <div>hi</div>;
+      return <MoneySent
+        amount={CURRENCY_SYMBOLS[this.state.currency] + this.state.amount}
+        email={this.state.email}
+        currency={this.state.currency}
+        clearForm={this.clearForm}
+      />;
     }
     const currencyOptions = CURRENCY_TYPES.map( currency => {
       return <option key={currency} value = {currency}>{currency}</option>;
