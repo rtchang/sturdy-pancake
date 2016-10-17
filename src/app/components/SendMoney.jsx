@@ -72,7 +72,6 @@ export default class SendMoney extends React.Component {
           <p>Amount: {CURRENCY_SYMBOLS[this.state.currency]}</p>
           <input
             type="text"
-            pattern="\d*"
             onChange={this.handleAmountChange}
             onBlur={this.amountBlur}
             onFocus={this.amountFocus}
