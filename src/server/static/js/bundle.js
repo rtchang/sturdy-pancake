@@ -15949,6 +15949,7 @@
             value: function() {
                 var _this2 = this, error = "";
                 return this.state.validEmail || (error += "Email must be valid!\n"), "0.00" === this.state.amount && (error += "You can't send nothing!\n"), 
+                null === this.state.paymentFor && (error += "You must select a payment type!\n"), 
                 error ? void alert(error) : (document.body.classList.add("loading"), void setTimeout(function() {
                     return _this2.setState({
                         sent: !0

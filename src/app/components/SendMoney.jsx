@@ -102,6 +102,9 @@ export default class SendMoney extends React.Component {
     if (this.state.amount === "0.00") {
       error += "You can't send nothing!\n";
     }
+    if (this.state.paymentFor === null) {
+      error += "You must select a payment type!\n";
+    }
     if (error) {
       alert(error);
       return;
