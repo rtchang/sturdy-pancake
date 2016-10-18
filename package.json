@@ -1,21 +1,13 @@
 {
-  "name": "supreme-giggle",
+  "name": "SendMoney",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/babel-node --presets 'react,es2015' src/server/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nfdjps/supreme-giggle.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nfdjps/supreme-giggle/issues"
-  },
-  "homepage": "https://github.com/nfdjps/supreme-giggle#readme",
   "dependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
