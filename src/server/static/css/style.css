@@ -337,7 +337,7 @@ div.not-found {
 	text-align: center;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-device-width: 800px) {
 	ul.transactions {
 		width: 100%;
 	}
