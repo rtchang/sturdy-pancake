@@ -4,8 +4,8 @@ import TransactionItem from './TransactionItem';
 import { throttle } from 'lodash';
 
 export default class TransactionHistory extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleScroll = throttle(this.handleScroll.bind(this),500);
   }
 
@@ -13,12 +13,13 @@ export default class TransactionHistory extends React.Component {
     const transactions = this.props.transactions;
     if (!transactions || transactions.length === 0) {
       this.props.requestTransactions(0);
+      this.props.requestTransactions(1);
     }
     window.addEventListener('scroll', this.handleScroll);
   }
 
   componentDidUpdate() {
-    const getMoreTransactions = (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+    const getMoreTransactions = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
     if (getMoreTransactions) {
       this.props.requestTransactions((this.props.transactions.length / 20));
     }
@@ -29,7 +30,7 @@ export default class TransactionHistory extends React.Component {
   }
 
   handleScroll(e) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 100) {
       this.props.requestTransactions((this.props.transactions.length / 20));
     }
   }
@@ -39,10 +40,14 @@ export default class TransactionHistory extends React.Component {
       return <TransactionItem key={transaction.id} transaction={transaction}/>;
     });
     return (
-      <div>
-        <header>Transaction History</header>
-        <ul>{transactions}</ul>
-        <footer><Link to='/'><button>Back</button></Link></footer>
+      <div className="home">
+        <header><p className="header-text">Transaction History</p></header>
+        <ul className="transactions">{transactions}</ul>
+        <footer>
+          <Link to='/' className="transaction">
+            <button className="transaction button">Back</button>
+          </Link>
+        </footer>
       </div>
     );
   }

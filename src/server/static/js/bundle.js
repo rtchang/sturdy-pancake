@@ -6015,10 +6015,10 @@
                 }, goodsServices ? "✓" : "")))), _react2["default"].createElement("footer", null, _react2["default"].createElement("div", {
                     className: "footer"
                 }, _react2["default"].createElement("button", {
-                    className: "button footer",
+                    className: "button send-money",
                     onClick: this.clearForm
                 }, "Clear"), _react2["default"].createElement("button", {
-                    className: "button footer",
+                    className: "button send-money",
                     onClick: this.sentMoney
                 }, "Next"))));
             }
@@ -6066,9 +6066,9 @@
             Constructor;
         };
     }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), _TransactionItem = __webpack_require__(165), _TransactionItem2 = _interopRequireDefault(_TransactionItem), _lodash = __webpack_require__(254), TransactionHistory = function(_React$Component) {
-        function TransactionHistory(props) {
+        function TransactionHistory() {
             _classCallCheck(this, TransactionHistory);
-            var _this = _possibleConstructorReturn(this, (TransactionHistory.__proto__ || Object.getPrototypeOf(TransactionHistory)).call(this, props));
+            var _this = _possibleConstructorReturn(this, (TransactionHistory.__proto__ || Object.getPrototypeOf(TransactionHistory)).call(this));
             return _this.handleScroll = (0, _lodash.throttle)(_this.handleScroll.bind(_this), 500), 
             _this;
         }
@@ -6076,13 +6076,13 @@
             key: "componentDidMount",
             value: function() {
                 var transactions = this.props.transactions;
-                transactions && 0 !== transactions.length || this.props.requestTransactions(0), 
-                window.addEventListener("scroll", this.handleScroll);
+                transactions && 0 !== transactions.length || (this.props.requestTransactions(0), 
+                this.props.requestTransactions(1)), window.addEventListener("scroll", this.handleScroll);
             }
         }, {
             key: "componentDidUpdate",
             value: function() {
-                var getMoreTransactions = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+                var getMoreTransactions = window.innerHeight + window.scrollY >= document.body.scrollHeight;
                 getMoreTransactions && this.props.requestTransactions(this.props.transactions.length / 20);
             }
         }, {
@@ -6093,7 +6093,7 @@
         }, {
             key: "handleScroll",
             value: function(e) {
-                window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && this.props.requestTransactions(this.props.transactions.length / 20);
+                window.innerHeight + window.scrollY >= document.body.scrollHeight - 100 && this.props.requestTransactions(this.props.transactions.length / 20);
             }
         }, {
             key: "render",
@@ -6104,9 +6104,18 @@
                         transaction: transaction
                     });
                 });
-                return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, "Transaction History"), _react2["default"].createElement("ul", null, transactions), _react2["default"].createElement("footer", null, _react2["default"].createElement(_reactRouter.Link, {
-                    to: "/"
-                }, _react2["default"].createElement("button", null, "Back"))));
+                return _react2["default"].createElement("div", {
+                    className: "home"
+                }, _react2["default"].createElement("header", null, _react2["default"].createElement("p", {
+                    className: "header-text"
+                }, "Transaction History")), _react2["default"].createElement("ul", {
+                    className: "transactions"
+                }, transactions), _react2["default"].createElement("footer", null, _react2["default"].createElement(_reactRouter.Link, {
+                    to: "/",
+                    className: "transaction"
+                }, _react2["default"].createElement("button", {
+                    className: "transaction button"
+                }, "Back"))));
             }
         } ]), TransactionHistory;
     }(_react2["default"].Component);
@@ -6180,8 +6189,10 @@
         return _inherits(TransactionItem, _React$Component), _createClass(TransactionItem, [ {
             key: "render",
             value: function() {
-                var transaction = this.props.transaction;
-                return _react2["default"].createElement("li", null, _react2["default"].createElement("p", null, transaction.date.slice(0, 10)), _react2["default"].createElement("p", null, transaction.name), _react2["default"].createElement("p", null, "$", transaction.amount));
+                var transaction = this.props.transaction, date = transaction.date;
+                return _react2["default"].createElement("li", {
+                    className: "transaction"
+                }, _react2["default"].createElement("p", null, date.slice(5, 10) + "/" + date.slice(0, 4)), _react2["default"].createElement("p", null, transaction.name), _react2["default"].createElement("p", null, "$", transaction.amount));
             }
         } ]), TransactionItem;
     }(_react2["default"].Component);

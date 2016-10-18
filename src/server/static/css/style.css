@@ -94,7 +94,7 @@ div.home {
 }
 
 header, footer {
-	background: linear-gradient(rgb(69,44,23), rgb(76,52,26), rgb(49,35,18));
+	background: linear-gradient(rgba(69,44,23,.9), rgba(76,52,26,.9), rgba(49,35,18,.9));
 	position: fixed;
 	width: 100%;
 	min-width: 320px;
@@ -102,6 +102,7 @@ header, footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 5;
 }
 
 p.header-text {
@@ -140,15 +141,25 @@ button.button:active {
 
 button.index {
 	font-size: 20px;
-	width: 500px;
+	width: 300px;
 	max-width: 100%;
 	height: 100px;
 }
 
-button.footer {
+button.send-money {
 	font-size: 20px;
 	height: 70%;
 	width: 40%;
+}
+
+button.transaction {
+	font-size: 20px;
+	width: 300px;
+	height: 100%;
+}
+
+a.transaction {
+	height: 70%;
 }
 
 div.footer {
@@ -245,4 +256,31 @@ div.payment-option:hover {
 
 .selected {
 	color: rgb(200,145,87);
+}
+
+ul.transactions {
+	position: absolute;
+	height: 100%;
+	transform: translateY(10%);
+}
+
+li.transaction:nth-child(odd){
+	background: rgb(233,218,204);
+}
+
+li.transaction:nth-child(even){
+	background: rgb(228,213,195);
+}
+
+li.transaction {
+	width: 100%;
+	padding: 10px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.transaction p {
+	max-width: 200px;
+	text-align: center;
+	margin: 0 10px;
 }

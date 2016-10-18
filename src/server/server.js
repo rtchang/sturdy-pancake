@@ -19,6 +19,11 @@ fs.readFile( __dirname + "/" + "transactions.json", 'utf8', function (err, data)
     transactionData[k].id = k;
     return transactionData[k];
   });
+  transactionData = transactionData.sort((a,b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+  });
   let currentPage = 0;
   for (let i = 0; i < transactionData.length; i += TRANSACTIONS_PER_PAGE) {
     transactions[currentPage] = transactionData.slice(i, i+TRANSACTIONS_PER_PAGE);

@@ -200,8 +200,8 @@ export default class SendMoney extends React.Component {
         </div>
         <footer>
           <div className="footer">
-            <button className="button footer" onClick={this.clearForm}>Clear</button>
-            <button className="button footer" onClick={this.sentMoney}>Next</button>
+            <button className="button send-money" onClick={this.clearForm}>Clear</button>
+            <button className="button send-money" onClick={this.sentMoney}>Next</button>
           </div>
         </footer>
       </div>
