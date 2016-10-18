@@ -5990,25 +5990,27 @@
                     value: this.state.message,
                     onChange: this.handleMessageChange,
                     rows: "3"
-                }))), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", {
-                    className: "input-border"
-                }, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
+                }))), _react2["default"].createElement("p", {
+                    className: "payment-for"
+                }, "What's this payment for?"), _react2["default"].createElement("div", {
+                    className: "input-border payment-for"
+                }, _react2["default"].createElement("div", {
+                    className: "payment-option " + (familyFriends ? "selected" : ""),
                     onClick: function() {
                         return _this3.setState({
                             paymentFor: FAMILY_FRIENDS
                         });
-                    },
-                    className: familyFriends ? "selected" : ""
-                }, "I'm sending money to family or friends"), _react2["default"].createElement("p", {
+                    }
+                }, _react2["default"].createElement("p", null, "I'm sending money to family or friends"), _react2["default"].createElement("span", {
                     className: "checkmark"
-                }, familyFriends ? "✓" : "")), _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
+                }, familyFriends ? "✓" : "")), _react2["default"].createElement("div", {
+                    className: "payment-option " + (goodsServices ? "selected" : ""),
                     onClick: function() {
                         return _this3.setState({
                             paymentFor: GOODS_SERVICES
                         });
-                    },
-                    className: goodsServices ? "selected" : ""
-                }, "I'm paying for goods or services"), _react2["default"].createElement("p", {
+                    }
+                }, _react2["default"].createElement("p", null, "I'm paying for goods or services"), _react2["default"].createElement("span", {
                     className: "checkmark"
                 }, goodsServices ? "✓" : "")))), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
                     onClick: this.clearForm

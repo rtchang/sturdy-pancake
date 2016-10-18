@@ -12,7 +12,7 @@ table, caption, tbody, tfoot, thead, tr, th, td, textarea, input {
 	outline: 0;
 	font-weight: inherit;
 	font-style: inherit;
-	font-size: 100%;
+	font-size: 16px;
 	font-family: inherit;
 	vertical-align: baseline;
 }
@@ -194,4 +194,32 @@ img.to-input {
 	margin: auto;
 	max-height: 2em;
 	position: absolute;
+}
+
+p.payment-for {
+	margin-top: 15px;
+}
+
+div.payment-for {
+	flex-direction: column;
+	overflow: hidden;
+}
+
+div.payment-option {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+div.payment-option:hover {
+	cursor: pointer;
+	background: rgb(249, 218, 185);
+}
+
+.checkmark {
+	font-size: 15px;
+}
+
+.selected {
+	color: rgb(200,145,87);
 }

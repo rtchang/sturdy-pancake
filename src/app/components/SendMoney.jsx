@@ -180,25 +180,21 @@ export default class SendMoney extends React.Component {
             </label>
           </div>
 
-          <p>What's this payment for?</p>
-          <div className="input-border">
-            <div>
-              <p
-                onClick={() => this.setState({paymentFor: FAMILY_FRIENDS})}
-                className={familyFriends ? "selected" : ""}
-              >
-                I'm sending money to family or friends
-              </p>
-              <p className="checkmark">{familyFriends ? "✓" : ""}</p>
+          <p className="payment-for">What's this payment for?</p>
+          <div className="input-border payment-for">
+            <div
+              className={`payment-option ${familyFriends ? "selected" : ""}`}
+              onClick={() => this.setState({paymentFor: FAMILY_FRIENDS})}
+            >
+              <p>I'm sending money to family or friends</p>
+              <span className="checkmark">{familyFriends ? "✓" : ""}</span>
             </div>
-            <div>
-              <p
-                onClick={() => this.setState({paymentFor: GOODS_SERVICES})}
-                className={goodsServices ? "selected" : ""}
-              >
-                I'm paying for goods or services
-              </p>
-              <p className="checkmark">{goodsServices ? "✓" : ""}</p>
+            <div
+              className={`payment-option ${goodsServices ? "selected" : ""}`}
+              onClick={() => this.setState({paymentFor: GOODS_SERVICES})}
+            >
+              <p>I'm paying for goods or services</p>
+              <span className="checkmark">{goodsServices ? "✓" : ""}</span>
             </div>
           </div>
         </div>
