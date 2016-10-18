@@ -132,17 +132,21 @@ export default class SendMoney extends React.Component {
         clearForm={this.clearForm}
       />;
     }
+
     const currencyOptions = CURRENCY_TYPES.map( currency => {
       return <option key={currency} value={currency}>{currency}</option>;
     });
+
     const familyFriends = this.state.paymentFor === FAMILY_FRIENDS;
     const goodsServices = this.state.paymentFor === GOODS_SERVICES;
+
     let emailImage;
     const validEmail = this.state.validEmail;
     if (validEmail !== null) {
       const image = validEmail ? "green_check.png" : "red_x.png";
       emailImage = <img className="to-input" src={`/images/${image}`}/>;
     }
+
     return (
       <div>
         <header><p className="header-text">Send Money</p></header>
@@ -198,6 +202,7 @@ export default class SendMoney extends React.Component {
             </div>
           </div>
         </div>
+
         <footer>
           <div className="footer">
             <button className="button send-money" onClick={this.clearForm}>Clear</button>

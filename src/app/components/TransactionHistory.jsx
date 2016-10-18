@@ -44,7 +44,7 @@ export default class TransactionHistory extends React.Component {
         <header><p className="header-text">Transaction History</p></header>
         <ul className="transactions">{transactions}</ul>
         <footer>
-          <Link to='/' className="transaction">
+          <Link to='/' className="transaction" tabIndex="-1">
             <button className="transaction button">Back</button>
           </Link>
         </footer>
