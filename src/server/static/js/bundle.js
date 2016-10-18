@@ -5615,11 +5615,23 @@
             value: function() {
                 return _react2["default"].createElement("div", {
                     className: "home"
-                }, _react2["default"].createElement("header", null, "What are we doing?"), _react2["default"].createElement(_reactRouter.Link, {
-                    to: "/sendmoney"
-                }, _react2["default"].createElement("button", null, "Send Money")), _react2["default"].createElement(_reactRouter.Link, {
-                    to: "/history"
-                }, _react2["default"].createElement("button", null, "View Transaction History")), _react2["default"].createElement("footer", null));
+                }, _react2["default"].createElement("header", null, _react2["default"].createElement("p", {
+                    className: "header-text"
+                }, "What are we doing?")), _react2["default"].createElement(_reactRouter.Link, {
+                    to: "/sendmoney",
+                    className: "index-button",
+                    tabIndex: "-1"
+                }, _react2["default"].createElement("button", {
+                    className: "index-button",
+                    tabIndex: "1"
+                }, "Send Money")), _react2["default"].createElement(_reactRouter.Link, {
+                    to: "/history",
+                    className: "index-button",
+                    tabIndex: "-1"
+                }, _react2["default"].createElement("button", {
+                    className: "index-button",
+                    tabIndex: "2"
+                }, "View Transaction History")), _react2["default"].createElement("footer", null));
             }
         } ]), IndexPage;
     }(_react2["default"].Component);
