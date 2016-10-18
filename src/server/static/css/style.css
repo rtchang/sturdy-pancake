@@ -97,7 +97,7 @@ header, footer {
 	background: linear-gradient(rgb(69,44,23), rgb(76,52,26), rgb(49,35,18));
 	position: fixed;
 	width: 100%;
-	min-width: 300px;
+	min-width: 320px;
 	height: 10%;
 	display: flex;
 	justify-content: center;
@@ -146,7 +146,7 @@ div.app-container {
 }
 
 div.send-money {
-	width: 300px;
+	width: 320px;
 	margin: auto;
 	display: flex;
 	flex-direction: column;
@@ -155,6 +155,8 @@ div.send-money {
 }
 
 div.input-border {
+	display: flex;
+	width: 100%;
 	margin: 10px 0;
 	background: rgb(251,250,247);
 	border-radius: 10px;
@@ -162,7 +164,8 @@ div.input-border {
 	box-sizing: border-box;
 }
 
-.input-padding {
+.input {
+	white-space:nowrap;
 	padding: 10px;
 	width: 100%;
 	display: flex;
@@ -170,15 +173,18 @@ div.input-border {
 	position: relative;
 }
 
-div.to-input {
-	width: 100%;
-	display: flex;
+.message {
+	flex-direction: column;
 }
 
-.input-padding input {
+.input input {
 	padding-left: 5px;
 	padding-right: 20px;
 	width: 100%;
+}
+
+.input textarea {
+	width: 100%:
 }
 
 img.to-input {

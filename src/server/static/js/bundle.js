@@ -5965,13 +5965,15 @@
                 }, _react2["default"].createElement("div", {
                     className: "input-border to-input"
                 }, _react2["default"].createElement("label", {
-                    className: "input-padding"
+                    className: "input"
                 }, "To:", _react2["default"].createElement("input", {
                     onChange: this.handleEmailChange,
                     value: this.state.email
                 }), emailImage)), _react2["default"].createElement("div", {
                     className: "input-border"
-                }, _react2["default"].createElement("p", null, "Amount: ", CURRENCY_SYMBOLS[this.state.currency]), _react2["default"].createElement("input", {
+                }, _react2["default"].createElement("label", {
+                    className: "input"
+                }, "Amount: " + CURRENCY_SYMBOLS[this.state.currency], _react2["default"].createElement("input", {
                     type: "text",
                     onChange: this.handleAmountChange,
                     onBlur: this.amountBlur,
@@ -5980,12 +5982,15 @@
                 }), _react2["default"].createElement("select", {
                     value: this.state.currency,
                     onChange: this.handleCurrencyChange
-                }, currencyOptions)), _react2["default"].createElement("div", {
+                }, currencyOptions))), _react2["default"].createElement("div", {
                     className: "input-border"
-                }, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("textarea", {
+                }, _react2["default"].createElement("label", {
+                    className: "input message"
+                }, "Message (optional):", _react2["default"].createElement("textarea", {
                     value: this.state.message,
-                    onChange: this.handleMessageChange
-                })), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", {
+                    onChange: this.handleMessageChange,
+                    rows: "3"
+                }))), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", {
                     className: "input-border"
                 }, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
                     onClick: function() {
@@ -5994,7 +5999,7 @@
                         });
                     },
                     className: familyFriends ? "selected" : ""
-                }, "I'm sending money to family and friends"), _react2["default"].createElement("p", {
+                }, "I'm sending money to family or friends"), _react2["default"].createElement("p", {
                     className: "checkmark"
                 }, familyFriends ? "✓" : "")), _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
                     onClick: function() {

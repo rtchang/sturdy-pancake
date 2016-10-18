@@ -149,31 +149,35 @@ export default class SendMoney extends React.Component {
         <div className="send-money">
 
           <div className="input-border to-input">
-            <label className="input-padding">To:
+            <label className="input">To:
               <input onChange={this.handleEmailChange} value={this.state.email}/>
               {emailImage}
             </label>
           </div>
 
           <div className="input-border">
-            <p>Amount: {CURRENCY_SYMBOLS[this.state.currency]}</p>
-            <input
-              type="text"
-              onChange={this.handleAmountChange}
-              onBlur={this.amountBlur}
-              onFocus={this.amountFocus}
-              value={this.state.amount}
-            />
-
-            <select value={this.state.currency} onChange={this.handleCurrencyChange} >
-              {currencyOptions}
-            </select>
+            <label className="input">{`Amount: ${CURRENCY_SYMBOLS[this.state.currency]}`}
+              <input
+                type="text"
+                onChange={this.handleAmountChange}
+                onBlur={this.amountBlur}
+                onFocus={this.amountFocus}
+                value={this.state.amount}
+              />
+              <select value={this.state.currency} onChange={this.handleCurrencyChange} >
+                {currencyOptions}
+              </select>
+            </label>
           </div>
 
           <div className="input-border">
-            <p>Message (optional):</p>
-            <textarea value={this.state.message} onChange={this.handleMessageChange}>
-            </textarea>
+            <label className="input message">Message (optional):
+              <textarea
+                value={this.state.message}
+                onChange={this.handleMessageChange}
+                rows="3"
+              />
+            </label>
           </div>
 
           <p>What's this payment for?</p>
@@ -183,7 +187,7 @@ export default class SendMoney extends React.Component {
                 onClick={() => this.setState({paymentFor: FAMILY_FRIENDS})}
                 className={familyFriends ? "selected" : ""}
               >
-                I'm sending money to family and friends
+                I'm sending money to family or friends
               </p>
               <p className="checkmark">{familyFriends ? "✓" : ""}</p>
             </div>
