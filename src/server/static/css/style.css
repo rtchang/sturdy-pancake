@@ -5,7 +5,7 @@ del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+table, caption, tbody, tfoot, thead, tr, th, td, textarea, input {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -45,6 +45,14 @@ blockquote, q {
 	quotes: "" "";
 }
 
+textarea, input {
+	background: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
 .modal {
     display:    none;
     position:   fixed;
@@ -67,8 +75,10 @@ body.loading .modal {
     display: block;
 }
 
-html, body, div {
+html, body, div#main, div.app-container, div.home {
 	height: 100%;
+	width: 100%;
+	display: flex;
 }
 
 body {
@@ -87,6 +97,7 @@ header, footer {
 	background: linear-gradient(rgb(69,44,23), rgb(76,52,26), rgb(49,35,18));
 	position: fixed;
 	width: 100%;
+	min-width: 300px;
 	height: 10%;
 	display: flex;
 	justify-content: center;
@@ -120,10 +131,61 @@ button.index-button {
 	border-radius: 7px;
 }
 
-button.index-button:hover,:focus {
+button.index-button:hover,
+button.index-button:focus {
 	box-shadow: 2px 5px 5px #888888;
 }
 
 button.index-button:active {
 	box-shadow: inset 0 0 0 1px #bfbfbf,inset 0 5px 30px #777777;
+}
+div.app-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+div.send-money {
+	width: 300px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: left;
+}
+
+div.input-border {
+	margin: 10px 0;
+	background: rgb(251,250,247);
+	border-radius: 10px;
+	border: 2px solid black;
+	box-sizing: border-box;
+}
+
+.input-padding {
+	padding: 10px;
+	width: 100%;
+	display: flex;
+	line-height: normal;
+	position: relative;
+}
+
+div.to-input {
+	width: 100%;
+	display: flex;
+}
+
+.input-padding input {
+	padding-left: 5px;
+	padding-right: 20px;
+	width: 100%;
+}
+
+img.to-input {
+	top: 0;
+	bottom: 0;
+	right: 5px;
+	margin: auto;
+	max-height: 2em;
+	position: absolute;
 }

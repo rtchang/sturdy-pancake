@@ -5866,9 +5866,9 @@
         }, {
             key: "handleEmailChange",
             value: function(e) {
-                var email = e.target.value;
+                var email = e.target.value, validEmail = email ? validateEmail(email) : null;
                 this.setState({
-                    validEmail: validateEmail(email)
+                    validEmail: validEmail
                 }), this.setState({
                     email: email
                 });
@@ -5950,11 +5950,28 @@
                         key: currency,
                         value: currency
                     }, currency);
-                }), familyFriends = this.state.paymentFor === FAMILY_FRIENDS, goodsServices = this.state.paymentFor === GOODS_SERVICES;
-                return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, "Send Money"), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "To:"), _react2["default"].createElement("input", {
+                }), familyFriends = this.state.paymentFor === FAMILY_FRIENDS, goodsServices = this.state.paymentFor === GOODS_SERVICES, emailImage = void 0, validEmail = this.state.validEmail;
+                if (null !== validEmail) {
+                    var image = validEmail ? "green_check.png" : "red_x.png";
+                    emailImage = _react2["default"].createElement("img", {
+                        className: "to-input",
+                        src: "/images/" + image
+                    });
+                }
+                return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, _react2["default"].createElement("p", {
+                    className: "header-text"
+                }, "Send Money")), _react2["default"].createElement("div", {
+                    className: "send-money"
+                }, _react2["default"].createElement("div", {
+                    className: "input-border to-input"
+                }, _react2["default"].createElement("label", {
+                    className: "input-padding"
+                }, "To:", _react2["default"].createElement("input", {
                     onChange: this.handleEmailChange,
                     value: this.state.email
-                }), _react2["default"].createElement("p", null, this.state.validEmail ? "valid" : "invalid")), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Amount: ", CURRENCY_SYMBOLS[this.state.currency]), _react2["default"].createElement("input", {
+                }), emailImage)), _react2["default"].createElement("div", {
+                    className: "input-border"
+                }, _react2["default"].createElement("p", null, "Amount: ", CURRENCY_SYMBOLS[this.state.currency]), _react2["default"].createElement("input", {
                     type: "text",
                     onChange: this.handleAmountChange,
                     onBlur: this.amountBlur,
@@ -5963,10 +5980,14 @@
                 }), _react2["default"].createElement("select", {
                     value: this.state.currency,
                     onChange: this.handleCurrencyChange
-                }, currencyOptions)), _react2["default"].createElement("div", null, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("textarea", {
+                }, currencyOptions)), _react2["default"].createElement("div", {
+                    className: "input-border"
+                }, _react2["default"].createElement("p", null, "Message (optional):"), _react2["default"].createElement("textarea", {
                     value: this.state.message,
                     onChange: this.handleMessageChange
-                })), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", null, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
+                })), _react2["default"].createElement("p", null, "What's this payment for?"), _react2["default"].createElement("div", {
+                    className: "input-border"
+                }, _react2["default"].createElement("div", null, _react2["default"].createElement("p", {
                     onClick: function() {
                         return _this3.setState({
                             paymentFor: FAMILY_FRIENDS
@@ -5984,7 +6005,7 @@
                     className: goodsServices ? "selected" : ""
                 }, "I'm paying for goods or services"), _react2["default"].createElement("p", {
                     className: "checkmark"
-                }, goodsServices ? "✓" : ""))), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
+                }, goodsServices ? "✓" : "")))), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
                     onClick: this.clearForm
                 }, "Clear"), _react2["default"].createElement("button", {
                     onClick: this.sentMoney

@@ -58,7 +58,8 @@ export default class SendMoney extends React.Component {
 
   handleEmailChange(e) {
     const email = e.target.value;
-    this.setState({validEmail: validateEmail(email)});
+    const validEmail = email ? validateEmail(email) : null;
+    this.setState({validEmail});
     this.setState({email});
   }
 
@@ -136,57 +137,65 @@ export default class SendMoney extends React.Component {
     });
     const familyFriends = this.state.paymentFor === FAMILY_FRIENDS;
     const goodsServices = this.state.paymentFor === GOODS_SERVICES;
-
+    let emailImage;
+    const validEmail = this.state.validEmail;
+    if (validEmail !== null) {
+      const image = validEmail ? "green_check.png" : "red_x.png";
+      emailImage = <img className="to-input" src={`/images/${image}`}/>;
+    }
     return (
       <div>
-        <header>Send Money</header>
+        <header><p className="header-text">Send Money</p></header>
+        <div className="send-money">
 
-        <div>
-          <p>To:</p>
-          <input onChange={this.handleEmailChange} value={this.state.email}/>
-          <p>{this.state.validEmail ? "valid" : "invalid"}</p>
-        </div>
-
-        <div>
-          <p>Amount: {CURRENCY_SYMBOLS[this.state.currency]}</p>
-          <input
-            type="text"
-            onChange={this.handleAmountChange}
-            onBlur={this.amountBlur}
-            onFocus={this.amountFocus}
-            value={this.state.amount}
-          />
-
-          <select value={this.state.currency} onChange={this.handleCurrencyChange} >
-            {currencyOptions}
-          </select>
-        </div>
-
-        <div>
-          <p>Message (optional):</p>
-          <textarea value={this.state.message} onChange={this.handleMessageChange}>
-          </textarea>
-        </div>
-
-        <p>What's this payment for?</p>
-        <div>
-          <div>
-            <p
-              onClick={() => this.setState({paymentFor: FAMILY_FRIENDS})}
-              className={familyFriends ? "selected" : ""}
-            >
-              I'm sending money to family and friends
-            </p>
-            <p className="checkmark">{familyFriends ? "✓" : ""}</p>
+          <div className="input-border to-input">
+            <label className="input-padding">To:
+              <input onChange={this.handleEmailChange} value={this.state.email}/>
+              {emailImage}
+            </label>
           </div>
-          <div>
-            <p
-              onClick={() => this.setState({paymentFor: GOODS_SERVICES})}
-              className={goodsServices ? "selected" : ""}
-            >
-              I'm paying for goods or services
-            </p>
-            <p className="checkmark">{goodsServices ? "✓" : ""}</p>
+
+          <div className="input-border">
+            <p>Amount: {CURRENCY_SYMBOLS[this.state.currency]}</p>
+            <input
+              type="text"
+              onChange={this.handleAmountChange}
+              onBlur={this.amountBlur}
+              onFocus={this.amountFocus}
+              value={this.state.amount}
+            />
+
+            <select value={this.state.currency} onChange={this.handleCurrencyChange} >
+              {currencyOptions}
+            </select>
+          </div>
+
+          <div className="input-border">
+            <p>Message (optional):</p>
+            <textarea value={this.state.message} onChange={this.handleMessageChange}>
+            </textarea>
+          </div>
+
+          <p>What's this payment for?</p>
+          <div className="input-border">
+            <div>
+              <p
+                onClick={() => this.setState({paymentFor: FAMILY_FRIENDS})}
+                className={familyFriends ? "selected" : ""}
+              >
+                I'm sending money to family and friends
+              </p>
+              <p className="checkmark">{familyFriends ? "✓" : ""}</p>
+            </div>
+            <div>
+              <p
+                onClick={() => this.setState({paymentFor: GOODS_SERVICES})}
+                className={goodsServices ? "selected" : ""}
+              >
+                I'm paying for goods or services
+              </p>
+              <p className="checkmark">{goodsServices ? "✓" : ""}</p>
+            </div>
           </div>
         </div>
         <footer>
