@@ -264,6 +264,10 @@ div.payment-option {
 	padding: 10px;
 }
 
+div.payment-option:first-child {
+	border-bottom: 2px solid black;
+}
+
 div.payment-option:hover {
 	cursor: pointer;
 	background: rgb(249, 218, 185);
@@ -327,6 +331,10 @@ p.transaction-name {
 	margin-top: 40px;
 	color: rgb(205,145,86);
 	font-size: 100px;
+}
+
+div.not-found {
+	text-align: center;
 }
 
 @media only screen and (max-width: 800px) {

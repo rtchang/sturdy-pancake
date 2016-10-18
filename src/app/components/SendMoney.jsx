@@ -14,7 +14,7 @@ const CURRENCY_SYMBOLS = {
 const FAMILY_FRIENDS = 0;
 const GOODS_SERVICES = 1;
 
-const formatMoney = function(amount, currency) {
+const formatMoney = function formatMoney(amount, currency) {
   const formatter = new Intl.NumberFormat('en-US', {
     currency,
     minimumFractionDigits: 2,

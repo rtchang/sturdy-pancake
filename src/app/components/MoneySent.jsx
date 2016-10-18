@@ -9,7 +9,7 @@ const MoneySent = ({amount, email, currency, clearForm}) => (
     <footer>
       <div className="footer">
         <button className="button sent-left" onClick={clearForm}>Send Money</button>
-        <Link className="sent-money" to='/history'>
+        <Link className="sent-money" to='/history' tabIndex="-1">
           <button className="button sent-right">Transaction History</button>
         </Link>
       </div>

@@ -10,8 +10,4 @@ class AppRoutes extends React.Component {
   }
 }
 
-AppRoutes.contextTypes = {
-  store: React.PropTypes.object.isRequired
-};
-
 export default AppRoutes;
