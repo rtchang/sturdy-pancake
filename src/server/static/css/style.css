@@ -158,7 +158,20 @@ button.transaction {
 	height: 100%;
 }
 
-a.transaction {
+button.sent-left {
+	height:70%;
+}
+
+button.sent-right {
+	height: 100%;
+}
+
+button.sent-left, button.sent-right {
+	font-size: 16px;
+	font-weight: normal;
+}
+
+a.transaction, a.sent-money {
 	height: 70%;
 }
 
@@ -280,7 +293,31 @@ li.transaction {
 }
 
 .transaction p {
-	max-width: 200px;
 	text-align: center;
 	margin: 0 10px;
+}
+
+p.transaction-date {
+	max-width: 80px;
+}
+
+p.transaction-amount {
+	max-width: 60px;
+}
+
+p.transaction-name {
+	max-width: 130px;
+}
+
+
+.sent-text {
+	font-size: 20px;
+	text-align: center;
+}
+
+.sent-checkmark {
+	text-align: center;
+	margin-top: 40px;
+	color: rgb(205,145,86);
+	font-size: 100px;
 }

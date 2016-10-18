@@ -5703,11 +5703,25 @@
     });
     var _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactRouter = __webpack_require__(25), MoneySent = function(_ref) {
         var amount = _ref.amount, email = _ref.email, currency = _ref.currency, clearForm = _ref.clearForm;
-        return _react2["default"].createElement("div", null, _react2["default"].createElement("header", null, "Send Money"), _react2["default"].createElement("p", null, "You have sent ", amount, " ", currency, " to ", email), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
+        return _react2["default"].createElement("div", {
+            className: "home"
+        }, _react2["default"].createElement("header", null, _react2["default"].createElement("p", {
+            className: "header-text"
+        }, "Send Money")), _react2["default"].createElement("p", {
+            className: "sent-text"
+        }, "You have sent ", amount, " ", currency, " to ", email, "!"), _react2["default"].createElement("p", {
+            className: "sent-checkmark"
+        }, "✓"), _react2["default"].createElement("footer", null, _react2["default"].createElement("div", {
+            className: "footer"
+        }, _react2["default"].createElement("button", {
+            className: "button sent-left",
             onClick: clearForm
         }, "Send Money"), _react2["default"].createElement(_reactRouter.Link, {
+            className: "sent-money",
             to: "/history"
-        }, _react2["default"].createElement("button", null, "View Transaction History"))));
+        }, _react2["default"].createElement("button", {
+            className: "button sent-right"
+        }, "Transaction History")))));
     };
     exports["default"] = MoneySent;
 }, function(module, exports, __webpack_require__) {
@@ -6192,7 +6206,13 @@
                 var transaction = this.props.transaction, date = transaction.date;
                 return _react2["default"].createElement("li", {
                     className: "transaction"
-                }, _react2["default"].createElement("p", null, date.slice(5, 10) + "/" + date.slice(0, 4)), _react2["default"].createElement("p", null, transaction.name), _react2["default"].createElement("p", null, "$", transaction.amount));
+                }, _react2["default"].createElement("p", {
+                    className: "transaction-date"
+                }, date.slice(5, 10) + "/" + date.slice(0, 4)), _react2["default"].createElement("p", {
+                    className: "transaction-name"
+                }, transaction.name), _react2["default"].createElement("p", {
+                    className: "transaction-amount"
+                }, "$", transaction.amount));
             }
         } ]), TransactionItem;
     }(_react2["default"].Component);

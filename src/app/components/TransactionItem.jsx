@@ -7,9 +7,11 @@ export default class TransactionItem extends React.Component {
     const date = transaction.date;
     return (
       <li className="transaction">
-        <p>{`${date.slice(5,10)}/${date.slice(0,4)}`}</p>
-        <p>{transaction.name}</p>
-        <p>${transaction.amount}</p>
+        <p className="transaction-date">
+          {`${date.slice(5,10)}/${date.slice(0,4)}`}
+        </p>
+        <p className="transaction-name">{transaction.name}</p>
+        <p className="transaction-amount">${transaction.amount}</p>
       </li>
     );
   }
