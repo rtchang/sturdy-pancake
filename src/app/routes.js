@@ -5,17 +5,14 @@ import IndexPage from './components/IndexPage';
 import NotFoundPage from './components/NotFoundPage';
 import SendMoney from './components/SendMoney';
 import TransactionHistoryContainer from './components/TransactionHistoryContainer';
-import * as TRANSACTION_ACTIONS from "./actions/transaction_actions";
 
-const getRoutes = function(store) {
-  return (
-    <Route path="/" component={Layout}>
-      <IndexRoute component={IndexPage}/>
-      <Route path="/sendmoney" component={SendMoney}/>
-      <Route path="/history" component={TransactionHistoryContainer}/>
-      <Route path="*" component={NotFoundPage}/>
-    </Route>
-  );
-};
+const routes = (
+  <Route path="/" component={Layout}>
+    <IndexRoute component={IndexPage}/>
+    <Route path="/sendmoney" component={SendMoney}/>
+    <Route path="/history" component={TransactionHistoryContainer}/>
+    <Route path="*" component={NotFoundPage}/>
+  </Route>
+);
 
-export default getRoutes;
+export default routes;

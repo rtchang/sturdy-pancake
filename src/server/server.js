@@ -5,7 +5,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import getRoutes from '../app/routes';
+import routes from '../app/routes';
 import NotFoundPage from '../app/components/NotFoundPage';
 import fs from "fs";
 import configureStore from '../app/store/store';
@@ -43,10 +43,9 @@ app.get('/api/transactions', function (req, res) {
 });
 
 // universal routing and rendering
-const store = configureStore();
 app.get('*', (req, res) => {
   match(
-    { routes: getRoutes(store), location: req.url },
+    { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
       // in case of error display the error message
       if (err) {
@@ -58,6 +57,7 @@ app.get('*', (req, res) => {
         return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       }
       // generate the React markup for the current route
+      const store = configureStore();
       let markup;
       let preloadedState;
       if (renderProps) {
