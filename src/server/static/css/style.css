@@ -329,7 +329,7 @@ p.transaction-name {
 	font-size: 100px;
 }
 
-@media only screen and (max-device-width: 800px) {
+@media only screen and (max-width: 800px) {
 	ul.transactions {
 		width: 100%;
 	}
@@ -346,13 +346,13 @@ p.transaction-name {
 
 }
 
-@media only screen and (max-device-height: 500px) {
+@media only screen and (max-height: 500px) {
 	div.send-money {
 		justify-content:flex-start;
 	}
 }
 
-@media only screen and (max-device-height: 400px) {
+@media only screen and (max-height: 400px) {
 	div.send-money {
 		margin-top: 0;
 		top: 40px;
