@@ -104,6 +104,7 @@ header, footer {
 	width: 100%;
 	min-width: 320px;
 	height: 10%;
+	min-height: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -203,10 +204,10 @@ div.send-money {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: left;
 }
 
 div.input-border {
+	flex-shrink: 0;
 	display: flex;
 	width: 100%;
 	margin: 10px 0;
@@ -277,6 +278,7 @@ div.payment-option:hover {
 }
 
 ul.transactions {
+	top: 0;
 	position: absolute;
 	height: 100%;
 	transform: translateY(10%);
@@ -311,7 +313,7 @@ p.transaction-amount {
 }
 
 p.transaction-name {
-	max-width: 130px;
+	min-width: 130px;
 }
 
 
@@ -325,4 +327,35 @@ p.transaction-name {
 	margin-top: 40px;
 	color: rgb(205,145,86);
 	font-size: 100px;
+}
+
+@media only screen and (max-device-width: 800px) {
+	ul.transactions {
+		width: 100%;
+	}
+
+	div.send-money {
+		position: fixed;
+		left:0;
+		right:0;
+		margin: auto;
+		top: 10%;
+		bottom: 10%;
+		overflow: scroll;
+	}
+
+}
+
+@media only screen and (max-device-height: 500px) {
+	div.send-money {
+		justify-content:flex-start;
+	}
+}
+
+@media only screen and (max-device-height: 400px) {
+	div.send-money {
+		margin-top: 0;
+		top: 40px;
+		bottom: 40px;
+	}
 }
