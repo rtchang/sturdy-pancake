@@ -5619,17 +5619,17 @@
                     className: "header-text"
                 }, "What are we doing?")), _react2["default"].createElement(_reactRouter.Link, {
                     to: "/sendmoney",
-                    className: "index-button",
+                    className: "button index",
                     tabIndex: "-1"
                 }, _react2["default"].createElement("button", {
-                    className: "index-button",
+                    className: "button index",
                     tabIndex: "1"
                 }, "Send Money")), _react2["default"].createElement(_reactRouter.Link, {
                     to: "/history",
-                    className: "index-button",
+                    className: "button index",
                     tabIndex: "-1"
                 }, _react2["default"].createElement("button", {
-                    className: "index-button",
+                    className: "button index",
                     tabIndex: "2"
                 }, "View Transaction History")), _react2["default"].createElement("footer", null));
             }
@@ -6012,11 +6012,15 @@
                     }
                 }, _react2["default"].createElement("p", null, "I'm paying for goods or services"), _react2["default"].createElement("span", {
                     className: "checkmark"
-                }, goodsServices ? "✓" : "")))), _react2["default"].createElement("footer", null, _react2["default"].createElement("button", {
+                }, goodsServices ? "✓" : "")))), _react2["default"].createElement("footer", null, _react2["default"].createElement("div", {
+                    className: "footer"
+                }, _react2["default"].createElement("button", {
+                    className: "button footer",
                     onClick: this.clearForm
                 }, "Clear"), _react2["default"].createElement("button", {
+                    className: "button footer",
                     onClick: this.sentMoney
-                }, "Next")));
+                }, "Next"))));
             }
         } ]), SendMoney;
     }(_react2["default"].Component);

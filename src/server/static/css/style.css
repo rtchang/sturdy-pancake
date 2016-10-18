@@ -117,28 +117,51 @@ footer {
 	bottom: 0;
 }
 
-a.index-button {
+a.button {
 	margin: 50px;
+	max-width:80%;
 }
 
-button.index-button {
+button.button {
 	border: none;
 	background: linear-gradient(white, rgb(190,190,190));
-	font-size: 20px;
 	font-weight: bold;
-	width: 500px;
-	height: 100px;
 	border-radius: 7px;
 }
 
-button.index-button:hover,
-button.index-button:focus {
+button.index:hover,
+button.index:focus {
 	box-shadow: 2px 5px 5px #888888;
 }
 
-button.index-button:active {
+button.button:active {
 	box-shadow: inset 0 0 0 1px #bfbfbf,inset 0 5px 30px #777777;
 }
+
+button.index {
+	font-size: 20px;
+	width: 500px;
+	max-width: 100%;
+	height: 100px;
+}
+
+button.footer {
+	font-size: 20px;
+	height: 70%;
+	width: 40%;
+}
+
+div.footer {
+	padding: 0 20px;
+	box-sizing: border-box;
+	height: 100%;
+	width: 320px;
+	min-width: 320px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 div.app-container {
 	display: flex;
 	flex-direction: column;
