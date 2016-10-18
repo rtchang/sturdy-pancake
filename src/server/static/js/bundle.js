@@ -15882,9 +15882,14 @@
             _this.handleEmailChange = _this.handleEmailChange.bind(_this), _this.amountBlur = _this.amountBlur.bind(_this), 
             _this.amountFocus = _this.amountFocus.bind(_this), _this.handleMessageChange = _this.handleMessageChange.bind(_this), 
             _this.clearForm = _this.clearForm.bind(_this), _this.sentMoney = _this.sentMoney.bind(_this), 
-            _this;
+            _this.timeOut = null, _this;
         }
         return _inherits(SendMoney, _React$Component), _createClass(SendMoney, [ {
+            key: "componentWillUnmount",
+            value: function() {
+                clearTimeout(this.timeOut), document.body.classList.remove("loading");
+            }
+        }, {
             key: "handleEmailChange",
             value: function(e) {
                 var email = e.target.value;
@@ -15950,17 +15955,17 @@
                 var _this2 = this, error = "";
                 return this.state.validEmail || (error += "Email must be valid!\n"), "0.00" === this.state.amount && (error += "You can't send nothing!\n"), 
                 null === this.state.paymentFor && (error += "You must select a payment type!\n"), 
-                error ? void alert(error) : (document.body.classList.add("loading"), void setTimeout(function() {
-                    return _this2.setState({
+                error ? void alert(error.trim()) : (document.body.classList.add("loading"), void (this.timeOut = setTimeout(function() {
+                    _this2.setState({
                         sent: !0
-                    });
-                }, 500));
+                    }), document.body.classList.remove("loading");
+                }, 500)));
             }
         }, {
             key: "render",
             value: function() {
                 var _this3 = this;
-                if (this.state.sent) return document.body.classList.remove("loading"), _react2["default"].createElement(_MoneySent2["default"], {
+                if (this.state.sent) return _react2["default"].createElement(_MoneySent2["default"], {
                     amount: CURRENCY_SYMBOLS[this.state.currency] + this.state.amount,
                     email: this.state.email,
                     currency: this.state.currency,

@@ -48,6 +48,12 @@ export default class SendMoney extends React.Component {
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.sentMoney = this.sentMoney.bind(this);
+    this.timeOut = null;
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeOut);
+    document.body.classList.remove("loading");
   }
 
   handleEmailChange(e) {
@@ -106,16 +112,18 @@ export default class SendMoney extends React.Component {
       error += "You must select a payment type!\n";
     }
     if (error) {
-      alert(error);
+      alert(error.trim());
       return;
     }
     document.body.classList.add("loading");
-    setTimeout( () => this.setState({sent: true}), 500);
+    this.timeOut = setTimeout( () => {
+      this.setState({sent: true});
+      document.body.classList.remove("loading");
+    },500);
   }
 
   render() {
     if (this.state.sent) {
-      document.body.classList.remove("loading");
       return <MoneySent
         amount={CURRENCY_SYMBOLS[this.state.currency] + this.state.amount}
         email={this.state.email}
@@ -124,7 +132,7 @@ export default class SendMoney extends React.Component {
       />;
     }
     const currencyOptions = CURRENCY_TYPES.map( currency => {
-      return <option key={currency} value = {currency}>{currency}</option>;
+      return <option key={currency} value={currency}>{currency}</option>;
     });
     const familyFriends = this.state.paymentFor === FAMILY_FRIENDS;
     const goodsServices = this.state.paymentFor === GOODS_SERVICES;
